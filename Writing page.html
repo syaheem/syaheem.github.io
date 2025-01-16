@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Haven Blog</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif; /* Elegant font for body text */
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* Elegant black background */
+            color: #fff; /* White text for contrast */
+        }
+
+        /* Header Section */
+        header {
+            background-color: #333; /* Dark gray for the header */
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid #444; /* Adds separation with slightly lighter color */
+        }
+        header h1 {
+            font-family: 'Playfair Display', serif; /* Elegant font for headings */
+            margin: 0;
+            color: #ffa07a; /* Soft peach */
+            font-size: 2.5rem;
+        }
+        header p {
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #444; /* Darker gray for the navbar */
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ffa07a; /* Matches header text color */
+        }
+
+        /* Content Section */
+        .content {
+            padding: 40px 20px;
+            text-align: left;
+        }
+        .content h2 {
+            font-family: 'Playfair Display', serif; /* Elegant font for headings */
+            margin-bottom: 20px;
+            color: #ffa07a; /* Soft peach for headings */
+        }
+        .content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Blog Post Styles */
+        .blog-post {
+            margin-bottom: 40px;
+        }
+        .blog-post h3 {
+            font-family: 'Playfair Display', serif; /* Elegant font for subheadings */
+            font-size: 1.8rem;
+            color: #ffa07a; /* Soft peach for subheadings */
+        }
+        .blog-post p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .editable {
+            border: 1px solid #444;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #222;
+            border-radius: 5px;
+        }
+
+        .editable:focus {
+            outline: none;
+            border-color: #ffa07a;
+        }
+
+        .save-btn {
+            background-color: #ffa07a;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .save-btn:hover {
+            background-color: #ff8c69;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 20px 20px 0 0; /* Rounded top corners */
+        }
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Cat Haven Blog</h1>
+        <p>Stories and tips about our furry friends</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div>Cat Haven</div>
+        <ul>
+            <li><a href="Cat.html">Home</a></li>
+            <li><a href="Writing page.html">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content Section -->
+    <section class="content">
+        <h2>Latest Blog Posts</h2>
+        <!-- Blog Post 1 -->
+        <div class="blog-post">
+            <h3 contenteditable="true" class="editable">5 Tips for First-Time Cat Owners</h3>
+            <p contenteditable="true" class="editable">Owning a cat for the first time can be both exciting and challenging. Here are five tips to help you get started on the right foot...</p>
+            <button class="save-btn" onclick="saveContent()">Save</button>
+        </div>
+        <!-- Blog Post 2 -->
+        <div class="blog-post">
+            <h3 contenteditable="true" class="editable">The Benefits of Adopting an Older Cat</h3>
+            <p contenteditable="true" class="editable">While kittens are undeniably cute, older cats have their own unique advantages. Discover why adopting an older cat might be the best decision...</p>
+            <button class="save-btn" onclick="saveContent()">Save</button>
+        </div>
+        <!-- Blog Post 3 -->
+        <div class="blog-post">
+            <h3 contenteditable="true" class="editable">How to Create a Cat-Friendly Home</h3>
+            <p contenteditable="true" class="editable">Making your home safe and comfortable for your feline friend is essential. Learn how to create a cat-friendly environment with these simple tips...</p>
+            <button class="save-btn" onclick="saveContent()">Save</button>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Cat Haven. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function saveContent() {
+            const editableElements = document.querySelectorAll('.editable');
+            editableElements.forEach(element => {
+                localStorage.setItem(element.tagName + element.className + element.textContent, element.innerHTML);
+            });
+            alert("Content saved!");
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const editableElements = document.querySelectorAll('.editable');
+            editableElements.forEach(element => {
+                const savedContent = localStorage.getItem(element.tagName + element.className + element.textContent);
+                if (savedContent) {
+                    element.innerHTML = savedContent;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
